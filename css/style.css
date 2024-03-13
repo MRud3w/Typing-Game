@@ -24,4 +24,25 @@ body {
   width: 500px;
   height: 400px;
   text-align: center;
+  line-height: 35px;
+  height: 140px;
+  overflow: hidden;
+}
+.game:focus {
+  outline: none;
+}
+
+.word {
+  display: inline-block;
+  font-family: "Roboto Mono", monospace;
+  margin: 0 5px;
+  color: var(--textSecondary);
+}
+
+.letter .correct {
+  color: var(--textPrimary);
+}
+.letter .incorrect {
+  color: red;
+  text-decoration: line-through;
 }/*# sourceMappingURL=style.css.map */
