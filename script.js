@@ -36,8 +36,33 @@ const startGame = () => {
 gameArea.addEventListener('keydown', (e) => {
     const key = e.key;
     const currentLetter = document.querySelector('.letter.current');
+    const currentWord = document.querySelector('.word.current');
     const expected = currentLetter.innerHTML;
-    console.log({key, expected});
+    const isLetter = key.length === 1 && key !== ' ';
+    const isSpace = key === ' ';
+
+    if (isLetter) {
+        if (currentLetter) {
+            addClass(currentLetter, key === expected ? 'correct' : 'incorrect');
+            removeClass(currentLetter, 'current');
+            addClass(currentLetter.nextSibling, 'current');
+        }
+    }
+
+    if (isSpace) {
+        if (expected !== ' ') {
+            const lettersToInvalidate = [...currentWord.querySelectorAll('.letter:not(.correct)')];
+            lettersToInvalidate.forEach(letter => {
+                addClass(letter, 'incorrect');
+            });
+        }
+        removeClass(currentWord, 'current');
+        addClass(currentWord.nextSibling, 'current');
+        if (currentLetter) {
+            removeClass(currentLetter, 'current');
+        }
+        addClass(currentWord.nextSibling.firstChild, 'current');
+    }
 });
 
 
